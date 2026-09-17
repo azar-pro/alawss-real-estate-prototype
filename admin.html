@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>إدارة العقارات | الأوس العقارية</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="admin.css" />
+</head>
+<body>
+  <aside class="sidebar">
+    <a class="admin-brand" href="index.html"><img src="assets/logo.jpg" alt="شعار الأوس العقارية"><span><strong>الأوس العقارية</strong><small>لوحة إدارة تجريبية</small></span></a>
+    <nav><button class="nav-item active">▦ العقارات</button><button class="nav-item">⌂ الطلبات <span class="soon">قريبًا</span></button><button class="nav-item">◉ الإعدادات <span class="soon">قريبًا</span></button></nav>
+    <div class="sidebar-foot"><a href="index.html">← عرض الموقع</a><small>Prototype — البيانات محفوظة على هذا المتصفح فقط.</small></div>
+  </aside>
+
+  <main class="admin-main">
+    <header class="admin-header"><div><span class="eyebrow">لوحة الإدارة</span><h1>إدارة العقارات</h1><p>أضف أو عدّل أو أوقف العقار، وسيظهر التغيير مباشرة في واجهة الموقع على هذا الجهاز.</p></div><button class="primary" id="addPropertyBtn">+ إضافة عقار</button></header>
+
+    <section class="stats" id="stats"></section>
+
+    <section class="panel">
+      <div class="panel-head"><div><h2>كل العقارات</h2><span id="propertyCount"></span></div><div class="toolbar"><input id="adminSearch" type="search" placeholder="ابحث برقم الإعلان، الحي، النوع..."><select id="statusFilter"><option value="all">كل الحالات</option><option>متاح</option><option>مؤجر</option><option>غير متاح</option></select></div></div>
+      <div class="table-wrap"><table><thead><tr><th>العقار</th><th>رقم الإعلان</th><th>الموقع</th><th>السعر</th><th>الحالة</th><th>مميز</th><th></th></tr></thead><tbody id="propertyRows"></tbody></table></div>
+      <div id="adminEmpty" class="admin-empty" hidden>لا توجد عقارات مطابقة.</div>
+    </section>
+  </main>
+
+  <div class="drawer-wrap" id="propertyDrawer" aria-hidden="true">
+    <div class="drawer-backdrop" data-close-drawer></div>
+    <aside class="drawer">
+      <div class="drawer-head"><div><span class="eyebrow">إدارة الإعلان</span><h2 id="drawerTitle">إضافة عقار</h2></div><button class="icon-btn" data-close-drawer>×</button></div>
+      <form id="propertyForm">
+        <input type="hidden" name="editingId" />
+        <div class="form-grid">
+          <label><span>رقم الإعلان *</span><input name="id" required placeholder="مثال: 1065"></label>
+          <label><span>الحالة</span><select name="status"><option>متاح</option><option>مؤجر</option><option>غير متاح</option></select></label>
+          <label><span>نوع العقار *</span><select name="type" required><option value="">اختر</option><option>استراحة</option><option>شقة أرضية</option><option>شقة علوية</option><option>فيلا</option><option>مكتب تجاري</option><option>صالة تجارية</option><option>محل تجاري</option><option>أرض</option></select></label>
+          <label><span>نوع الطلب *</span><select name="deal" required><option>إيجار</option><option>بيع</option></select></label>
+          <label><span>المدينة *</span><select name="city" required><option>عنيزة</option><option>الرياض</option></select></label>
+          <label><span>الحي / الموقع *</span><input name="district" required placeholder="مثال: حي البديعة"></label>
+          <label><span>السعر (ر.س) *</span><input name="price" type="number" min="0" required placeholder="9950"></label>
+          <label><span>فترة السعر</span><input name="period" placeholder="مثال: كل 6 أشهر"></label>
+          <label class="full"><span>المميزات</span><textarea name="features" rows="3" placeholder="اكتب كل ميزة في سطر مستقل"></textarea></label>
+          <label class="full"><span>رابط صورة العقار</span><input name="img" type="url" placeholder="https://..."></label>
+          <label class="full upload-field"><span>أو ارفع صورة من الجهاز</span><input id="imageUpload" type="file" accept="image/*"><small>للنموذج التجريبي تُحفظ الصورة داخل المتصفح. النسخة الحقيقية ستستخدم تخزينًا سحابيًا.</small></label>
+          <label class="check full"><input name="featured" type="checkbox" checked><span>إظهار العقار ضمن العروض المميزة في الصفحة الرئيسية</span></label>
+        </div>
+        <div class="image-preview" id="imagePreview"><span>معاينة الصورة</span></div>
+        <div class="drawer-actions"><button type="button" class="secondary" data-close-drawer>إلغاء</button><button type="submit" class="primary">حفظ العقار</button></div>
+      </form>
+    </aside>
+  </div>
+
+  <div class="toast" id="toast"></div>
+  <script src="admin.js"></script>
+</body>
+</html>

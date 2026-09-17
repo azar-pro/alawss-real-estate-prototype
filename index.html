@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>الأوس العقارية | نموذج الصفحة الرئيسية</title>
+  <meta name="description" content="نموذج تصوري لموقع الأوس العقارية — بحث عقارات، إدارة أملاك، وتسويق عقاري." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header" id="top">
+    <div class="container header-inner">
+      <a class="brand" href="#top" aria-label="الأوس العقارية">
+        <img src="assets/logo.jpg" alt="شعار الأوس العقارية" />
+        <span class="brand-copy"><strong>الأوس العقارية</strong><small>إدارة وتأجير العقار</small></span>
+      </a>
+      <button class="menu-toggle" aria-label="فتح القائمة" aria-expanded="false">☰</button>
+      <nav class="main-nav" aria-label="التنقل الرئيسي">
+        <a href="#top">الرئيسية</a><a href="#listings">العقارات</a><a href="#services">خدماتنا</a><a href="#owners">إدارة الأملاك</a><a href="#branches">الفروع</a><a href="#about">من نحن</a><a href="#contact">تواصل</a>
+      </nav>
+      <div class="header-actions">
+        <a class="text-action" href="https://wa.me/966920010307" target="_blank" rel="noreferrer">تواصل معنا</a>
+        <a class="btn btn-primary btn-sm" href="#owners">اعرض عقارك معنا</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero section-pad">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <span class="eyebrow">الرياض · عنيزة</span>
+          <h1>ابحث عن عقارك <span>بسهولة ووضوح</span></h1>
+          <p>عقارات للإيجار وخدمات إدارة أملاك وتسويق عقاري عبر تجربة منظمة بدل البحث بين عشرات المنشورات.</p>
+          <div class="hero-actions"><a class="btn btn-primary" href="#listings">استعرض العقارات</a><a class="btn btn-ghost" href="#owners">اعرض عقارك معنا</a></div>
+          <div class="trust-line"><span>✓ إدارة وتأجير</span><span>✓ وساطة عقارية</span><span>✓ تحصيل الإيجارات</span></div>
+        </div>
+        <div class="hero-visual" aria-hidden="true">
+          <div class="photo-card photo-main"></div>
+          <div class="floating-card"><span class="dot"></span><div><small>استفسار مباشر</small><strong>رقم الإعلان محفوظ تلقائيًا</strong></div></div>
+          <div class="floating-tag">إدارة أملاك<br><strong>من الطلب حتى التحصيل</strong></div>
+        </div>
+      </div>
+
+      <div class="container search-shell">
+        <div class="search-heading"><strong>ابدأ البحث الآن</strong><span>اختر احتياجك واعرض النتائج مباشرة</span></div>
+        <form id="propertySearch" class="property-search">
+          <label><span>المدينة</span><select id="city"><option value="all">الكل</option><option value="عنيزة">عنيزة</option><option value="الرياض">الرياض</option></select></label>
+          <label><span>نوع العقار</span><select id="type"><option value="all">كل الأنواع</option><option>استراحة</option><option>شقة أرضية</option><option>شقة علوية</option><option>فيلا</option><option>مكتب تجاري</option><option>صالة تجارية</option></select></label>
+          <label><span>نوع الطلب</span><select id="deal"><option value="all">الكل</option><option value="إيجار">إيجار</option><option value="بيع">بيع</option></select></label>
+          <label><span>السعر حتى</span><select id="price"><option value="all">أي سعر</option><option value="5000">5,000 ر.س</option><option value="10000">10,000 ر.س</option><option value="20000">20,000 ر.س</option><option value="40000">40,000 ر.س</option></select></label>
+          <button class="btn btn-primary search-btn" type="submit">بحث</button>
+        </form>
+      </div>
+    </section>
+
+    <section class="section-pad listings-section" id="listings">
+      <div class="container">
+        <div class="section-head"><div><span class="eyebrow">العروض الحالية</span><h2>عقارات متاحة الآن</h2><p>نماذج مبنية على فئات وإعلانات منشورة لدى الأوس، مع صور توضيحية في هذا النموذج.</p></div><button id="resetFilters" class="link-btn">عرض الكل ←</button></div>
+        <div class="listing-grid" id="listingGrid"></div>
+        <div class="center"><a class="btn btn-outline" href="#listings">عرض جميع العقارات</a></div>
+      </div>
+    </section>
+
+    <section class="value-strip section-pad-sm">
+      <div class="container value-wrap">
+        <div class="value-title"><span class="eyebrow light">تجربة بحث أفضل</span><h2>بدل البحث بين عشرات المنشورات</h2></div>
+        <div class="benefit-grid">
+          <article><span>01</span><div><strong>ابحث حسب المدينة</strong><p>اختر الرياض أو عنيزة من البداية.</p></div></article>
+          <article><span>02</span><div><strong>صفِّ حسب العقار والسعر</strong><p>أظهر فقط ما يناسب احتياجك.</p></div></article>
+          <article><span>03</span><div><strong>تواصل على الإعلان مباشرة</strong><p>رقم الإعلان وبياناته تصل مع رسالتك.</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-pad" id="services">
+      <div class="container">
+        <div class="section-head centered"><div><span class="eyebrow">خدماتنا</span><h2>خدمات عقارية متكاملة</h2><p>من عرض العقار إلى إدارة العلاقة مع المستأجر والتحصيل.</p></div></div>
+        <div class="service-grid">
+          <article class="service-card"><div class="icon">⌂</div><h3>تسويق عقاري</h3><p>عرض العقار بشكل واضح ومنظم للوصول إلى الباحثين الجادين.</p><a href="#owners">اعرف المزيد ←</a></article>
+          <article class="service-card featured"><div class="icon">▦</div><h3>تأجير وإدارة أملاك</h3><p>متابعة دورة التأجير والإدارة لتقليل العبء على مالك العقار.</p><a href="#owners">اعرف المزيد ←</a></article>
+          <article class="service-card"><div class="icon">↔</div><h3>وساطة عقارية</h3><p>ربط الأطراف وتسهيل الوصول إلى الخيار المناسب بوضوح.</p><a href="#contact">اعرف المزيد ←</a></article>
+          <article class="service-card"><div class="icon">﷼</div><h3>تحصيل الإيجارات</h3><p>متابعة التحصيل ضمن تجربة إدارة أملاك أكثر تنظيمًا.</p><a href="#owners">اعرف المزيد ←</a></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-pad owner-section" id="owners">
+      <div class="container owner-grid">
+        <div class="owner-copy"><span class="eyebrow">للملاك</span><h2>هل لديك عقار؟</h2><p>دع الأوس تتولى التسويق، التأجير، المتابعة والتحصيل. أرسل احتياجك في خطوات قصيرة وسنتابع معك مباشرة.</p><div class="owner-points"><span>✓ طلب مختصر وواضح</span><span>✓ اختيار الخدمة المطلوبة</span><span>✓ تواصل مباشر مع الفريق</span></div></div>
+        <form id="ownerForm" class="owner-form">
+          <div class="form-step"><span>1</span><label>نوع العقار<select name="propertyType" required><option value="">اختر النوع</option><option>شقة</option><option>فيلا</option><option>استراحة</option><option>مكتب / محل</option><option>أخرى</option></select></label></div>
+          <div class="form-step"><span>2</span><label>المدينة<select name="ownerCity" required><option value="">اختر المدينة</option><option>عنيزة</option><option>الرياض</option><option>مدينة أخرى</option></select></label></div>
+          <div class="form-step"><span>3</span><label>الخدمة المطلوبة<select name="service" required><option value="">اختر الخدمة</option><option>إدارة أملاك</option><option>تأجير</option><option>تسويق عقاري</option><option>تحصيل إيجارات</option></select></label></div>
+          <div class="form-step"><span>4</span><label>رقم التواصل<input name="phone" inputmode="tel" placeholder="05xxxxxxxx" required></label></div>
+          <button class="btn btn-primary btn-full" type="submit">اعرض عقارك معنا</button>
+          <small>سيتم فتح واتساب برسالة جاهزة تحتوي على تفاصيل طلبك.</small>
+        </form>
+      </div>
+    </section>
+
+    <section class="section-pad" id="about">
+      <div class="container trust-grid">
+        <div class="trust-panel"><span class="eyebrow light">ثقة وتنظيم</span><h2>لماذا الأوس العقارية؟</h2><p>الحضور الرقمي المقترح يعكس ما يظهر في قنوات الشركة: خدمات عقارية مباشرة، فروع واضحة، واعتمادات وتقييمات منشورة.</p><a class="btn btn-light" href="#branches">شاهد الفروع</a></div>
+        <div class="trust-items"><article><strong>إدارة وتأجير العقار</strong><p>خدمة أساسية واضحة في حضور الشركة.</p></article><article><strong>الرياض وعنيزة</strong><p>تجربة تواصل موجهة حسب الفرع.</p></article><article><strong>آراء عملاء منشورة</strong><p>إشارات ثقة قابلة للعرض دون اختلاق أرقام.</p></article><article><strong>ترخيص واعتماد عقاري</strong><p>إبراز الاعتمادات المنشورة بصريًا داخل الموقع.</p></article></div>
+      </div>
+    </section>
+
+    <section class="section-pad reviews-section">
+      <div class="container">
+        <div class="section-head"><div><span class="eyebrow">آراء العملاء</span><h2>تجارب منشورة تعزز الثقة</h2><p>في النسخة النهائية يمكن إدراج نصوص التقييمات الفعلية من المصادر العامة. هنا نعرض بنية آمنة دون اقتباسات مختلقة.</p></div></div>
+        <div class="review-grid"><article><div class="stars">★★★★★</div><strong>تقييمات Google موثقة</strong><p>بطاقة مخصصة لعرض تقييم فعلي بعد ربط المصدر.</p></article><article><div class="stars">★★★★★</div><strong>تقييمات حديثة</strong><p>يمكن فرزها حسب الأحدث أو حسب الفرع.</p></article><article><div class="stars">★★★★★</div><strong>عرض بدون مبالغة</strong><p>نستخدم النصوص والتقييمات المنشورة فقط.</p></article></div>
+      </div>
+    </section>
+
+    <section class="section-pad branches-section" id="branches">
+      <div class="container">
+        <div class="section-head centered"><div><span class="eyebrow">فروعنا</span><h2>تواصل مع الفرع المناسب</h2><p>اختيار الفرع يختصر الطريق إلى فريق أقرب لاحتياجك.</p></div></div>
+        <div class="branch-grid">
+          <article><div class="branch-city"><span>01</span><h3>عنيزة</h3></div><p>فرع عنيزة — تفاصيل الموقع الدقيقة تضاف من بيانات الشركة المعتمدة.</p><div><a class="btn btn-outline" href="tel:920010307">اتصال</a><a class="btn btn-primary" href="https://wa.me/966920010307" target="_blank" rel="noreferrer">واتساب</a></div></article>
+          <article><div class="branch-city"><span>02</span><h3>الرياض</h3></div><p>فرع الرياض — تفاصيل الموقع الدقيقة تضاف من بيانات الشركة المعتمدة.</p><div><a class="btn btn-outline" href="tel:920010307">اتصال</a><a class="btn btn-primary" href="https://wa.me/966920010307" target="_blank" rel="noreferrer">واتساب</a></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="detail-preview section-pad-sm">
+      <div class="container preview-grid">
+        <div class="preview-gallery"><div class="big"></div><div class="mini m1"></div><div class="mini m2"></div></div>
+        <div class="preview-info"><span class="eyebrow">معاينة صفحة العقار</span><h2>من الإعلان إلى صفحة كاملة</h2><p>المستخدم لا يحتاج إلى قراءة كل شيء داخل صورة. كل البيانات تصبح نصوصًا واضحة وقابلة للبحث.</p><div class="preview-meta"><span>استراحة</span><span>عنيزة</span><span>إيجار</span></div><div class="price-line"><small>السعر</small><strong>5,450 ر.س</strong><span>كل 6 أشهر</span></div><ul><li>عداد كهرباء مستقل</li><li>كراج</li><li>رقم الإعلان: 1053</li></ul><button class="btn btn-primary" data-open="1053">استفسر عن هذا العقار</button></div>
+      </div>
+    </section>
+
+    <section class="whatsapp-cta section-pad-sm" id="contact">
+      <div class="container cta-inner"><div><span class="eyebrow light">تواصل أسرع</span><h2>وجدت العقار المناسب؟</h2><p>أرسل رقم الإعلان وبيانات العقار مباشرة عبر واتساب بدل كتابة كل التفاصيل يدويًا.</p></div><a class="btn btn-light" href="https://wa.me/966920010307?text=%D9%85%D8%B1%D8%AD%D8%A8%D9%8B%D8%A7%D8%8C%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D8%B9%D9%82%D8%A7%D8%B1" target="_blank" rel="noreferrer">استفسر عبر واتساب</a></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div><a class="brand footer-brand" href="#top"><img src="assets/logo.jpg" alt=""><span class="brand-copy"><strong>الأوس العقارية</strong><small>إدارة وتأجير العقار</small></span></a><p>منصة عقارية منظمة للبحث، الاستفسار، وطلبات إدارة الأملاك.</p></div>
+      <div><strong>خدماتنا</strong><a href="#services">تسويق عقاري</a><a href="#services">إدارة أملاك</a><a href="#services">وساطة عقارية</a><a href="#services">تحصيل الإيجارات</a></div>
+      <div><strong>الفروع</strong><a href="#branches">عنيزة</a><a href="#branches">الرياض</a><a href="tel:920010307">920010307</a></div>
+      <div><strong>تابعنا</strong><a href="https://instagram.com/alawss.6006" target="_blank" rel="noreferrer">Instagram</a><a href="#">TikTok</a><a href="https://wa.me/966920010307" target="_blank" rel="noreferrer">WhatsApp</a><a href="admin.html" class="admin-link">إدارة الموقع</a></div>
+    </div>
+    <div class="container footer-bottom"><span>© الأوس العقارية — نموذج تصوري</span><span><a href="#">الخصوصية</a> · <a href="#">الشروط</a></span></div>
+  </footer>
+
+  <a class="floating-wa" href="https://wa.me/966920010307" target="_blank" rel="noreferrer" aria-label="واتساب">WA</a>
+
+  <div class="modal" id="listingModal" aria-hidden="true"><div class="modal-backdrop" data-close></div><div class="modal-card"><button class="modal-close" data-close>×</button><div class="modal-image" id="modalImage"></div><div class="modal-body"><span class="eyebrow">تفاصيل العقار</span><h3 id="modalTitle"></h3><div class="modal-tags" id="modalTags"></div><div class="modal-price" id="modalPrice"></div><ul id="modalFeatures"></ul><a class="btn btn-primary btn-full" id="modalWhatsApp" target="_blank" rel="noreferrer">استفسر عبر واتساب</a></div></div></div>
+
+  <script src="script.js"></script>
+</body>
+</html>

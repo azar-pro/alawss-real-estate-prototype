@@ -35,7 +35,7 @@
       <form id="propertyForm">
         <input type="hidden" name="editingId" />
         <div class="form-grid">
-          <label><span>رقم الإعلان *</span><input name="id" required placeholder="مثال: 1065"></label>
+          <label><span>رقم الإعلان *</span><input name="id" required readonly aria-readonly="true" title="يتم إنشاء رقم الإعلان تلقائيًا"><small>يتم توليده تلقائيًا اعتمادًا على آخر رقم إعلان.</small></label>
           <label><span>الحالة</span><select name="status"><option>متاح</option><option>مؤجر</option><option>غير متاح</option></select></label>
           <label><span>نوع العقار *</span><select name="type" required><option value="">اختر</option><option>استراحة</option><option>شقة أرضية</option><option>شقة علوية</option><option>فيلا</option><option>مكتب تجاري</option><option>صالة تجارية</option><option>محل تجاري</option><option>أرض</option></select></label>
           <label><span>نوع الطلب *</span><select name="deal" required><option>إيجار</option><option>بيع</option></select></label>

@@ -21,7 +21,27 @@ function updateResultsSummary(count,filtered=false){const el=document.getElement
 function render(items,filtered=false){
   updateResultsSummary(items.length,filtered);
   if(!items.length){grid.innerHTML='<div class="empty-state"><strong>لا توجد نتائج مطابقة</strong><span>جرّب تغيير المدينة أو نوع العقار أو السعر.</span></div>';return}
-  grid.innerHTML=items.map(x=>`<article class="listing-card"><div class="listing-image" style="background-image:url('${x.img}')"><span class="listing-badge">${x.deal}</span><span class="listing-no">إعلان ${x.id}</span></div><div class="listing-body"><div class="listing-top"><div><h3>${x.type}</h3><span>${x.district} · ${x.city}</span></div></div><div class="listing-price"><strong>${money(x.price)} ر.س</strong><small>${x.period||''}</small></div><div class="listing-features">${(x.features||[]).slice(0,3).map(f=>`<span>${f}</span>`).join('')}</div><button class="card-action" data-open="${x.id}">عرض التفاصيل</button></div></article>`).join('');bindOpen()
+  grid.innerHTML=items.map(x=>{
+  const msg=`مرحبًا، أرغب في الاستفسار عن الإعلان رقم ${x.id} — ${x.type} في ${x.city} — السعر ${money(x.price)} ر.س.`;
+  return `<article class="listing-card">
+    <div class="listing-image" style="background-image:url('${x.img}')">
+      <div class="listing-image-top"><span class="listing-badge">${x.deal}</span><span class="listing-status"><i></i>متاح الآن</span></div>
+      <span class="listing-no">#${x.id}</span>
+    </div>
+    <div class="listing-body">
+      <div class="listing-top"><div><h3>${x.type}</h3><span class="listing-location">⌖ ${x.district} · ${x.city}</span></div></div>
+      <div class="listing-features">${(x.features||[]).slice(0,3).map(f=>`<span>✓ ${f}</span>`).join('')}</div>
+      <div class="listing-divider"></div>
+      <div class="listing-bottom">
+        <div class="listing-price"><small>السعر</small><strong>${money(x.price)} ر.س</strong><em>${x.period||''}</em></div>
+        <div class="listing-actions">
+          <button class="card-action" data-open="${x.id}">عرض التفاصيل</button>
+          <a class="card-wa" href="https://wa.me/966920010307?text=${encodeURIComponent(msg)}" target="_blank" rel="noreferrer" aria-label="استفسر عبر واتساب عن الإعلان ${x.id}">واتساب</a>
+        </div>
+      </div>
+    </div>
+  </article>`;
+}).join('');bindOpen()
 }
 updateAvailableCount();
 render(visibleListings().filter(x=>x.featured!==false).slice(0,6));

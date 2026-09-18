@@ -16,7 +16,19 @@ let listings=loadListings();
 const grid=document.getElementById('listingGrid');
 function money(n){return new Intl.NumberFormat('ar-SA').format(Number(n)||0)}
 function visibleListings(){return listings.filter(x=>x.status==='متاح')}
-function updateAvailableCount(){const el=document.getElementById('availableCount');if(el)el.textContent=visibleListings().length}
+function updateAvailableCount(count=visibleListings().length){
+  const numberEl=document.getElementById('availableCount');
+  const labelEl=document.getElementById('availableCountLabel');
+  if(!numberEl||!labelEl)return;
+  const safeCount=Math.max(0,Number(count)||0);
+  if(safeCount===0){
+    numberEl.textContent='';
+    labelEl.textContent='لا توجد عقارات مطابقة حاليًا';
+    return;
+  }
+  numberEl.textContent=safeCount;
+  labelEl.textContent='عقار متاح حاليًا';
+}
 function updateResultsSummary(count,filtered=false){const el=document.getElementById('resultsSummary');if(!el)return;el.textContent=filtered?`تم العثور على ${count} عقار مطابق`:`عرض ${count} عقار متاح`}
 function render(items,filtered=false){
   updateResultsSummary(items.length,filtered);
@@ -45,11 +57,31 @@ function render(items,filtered=false){
 }
 updateAvailableCount();
 render(visibleListings().filter(x=>x.featured!==false).slice(0,6));
-document.getElementById('propertySearch').addEventListener('submit',e=>{e.preventDefault();const city=document.getElementById('city').value,type=document.getElementById('type').value,deal=document.getElementById('deal').value,price=document.getElementById('price').value;const out=visibleListings().filter(x=>(city==='all'||x.city===city)&&(type==='all'||x.type===type)&&(deal==='all'||x.deal===deal)&&(price==='all'||Number(x.price)<=Number(price)));render(out,true);document.getElementById('listings').scrollIntoView({behavior:'smooth'})});
-document.getElementById('resetFilters').addEventListener('click',()=>{document.getElementById('propertySearch').reset();render(visibleListings());});
+function getFilteredListings(){
+  const city=document.getElementById('city').value;
+  const type=document.getElementById('type').value;
+  const deal=document.getElementById('deal').value;
+  const price=document.getElementById('price').value;
+  return visibleListings().filter(x=>
+    (city==='all'||x.city===city)&&
+    (type==='all'||x.type===type)&&
+    (deal==='all'||x.deal===deal)&&
+    (price==='all'||Number(x.price)<=Number(price))
+  )
+}
+document.getElementById('propertySearch').addEventListener('submit',e=>{
+  e.preventDefault();
+  const out=getFilteredListings();
+  updateAvailableCount(out.length);
+  render(out,true);
+  document.getElementById('listings').scrollIntoView({behavior:'smooth'})
+});
+document.getElementById('resetFilters').addEventListener('click',()=>{document.getElementById('propertySearch').reset();const all=visibleListings();updateAvailableCount(all.length);render(all);});
 document.getElementById('showAllListings')?.addEventListener('click',()=>{
   document.getElementById('propertySearch').reset();
-  render(visibleListings());
+  const all=visibleListings();
+  updateAvailableCount(all.length);
+  render(all);
   document.getElementById('listings').scrollIntoView({behavior:'smooth'});
 });
 const modal=document.getElementById('listingModal');
@@ -81,4 +113,19 @@ function bindOpen(){document.querySelectorAll('[data-open]').forEach(b=>b.onclic
 document.querySelectorAll('[data-close]').forEach(el=>el.addEventListener('click',()=>{modal.classList.remove('open');modal.setAttribute('aria-hidden','true');document.body.style.overflow=''}));
 document.getElementById('ownerForm').addEventListener('submit',e=>{e.preventDefault();const fd=new FormData(e.currentTarget);const msg=`مرحبًا، لدي عقار وأرغب في التواصل مع الأوس العقارية.\nنوع العقار: ${fd.get('propertyType')}\nالمدينة: ${fd.get('ownerCity')}\nالخدمة المطلوبة: ${fd.get('service')}\nرقم التواصل: ${fd.get('phone')}`;window.open(`https://wa.me/966920010307?text=${encodeURIComponent(msg)}`,'_blank')});
 const mt=document.querySelector('.menu-toggle'),nav=document.querySelector('.main-nav');mt.addEventListener('click',()=>{const open=nav.classList.toggle('open');mt.setAttribute('aria-expanded',open)});nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>nav.classList.remove('open')));
-window.addEventListener('storage',e=>{if(e.key===STORAGE_KEY){listings=loadListings();updateAvailableCount();render(visibleListings().filter(x=>x.featured!==false).slice(0,6));}});
+window.addEventListener('storage',e=>{
+  if(e.key===STORAGE_KEY){
+    listings=loadListings();
+    const form=document.getElementById('propertySearch');
+    const hasActiveFilters=['city','type','deal','price'].some(id=>document.getElementById(id).value!=='all');
+    if(hasActiveFilters){
+      const out=getFilteredListings();
+      updateAvailableCount(out.length);
+      render(out,true);
+    }else{
+      const all=visibleListings();
+      updateAvailableCount(all.length);
+      render(all.filter(x=>x.featured!==false).slice(0,6));
+    }
+  }
+});

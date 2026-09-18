@@ -44,3 +44,34 @@
 .card-wa{background:#eef8f3;color:#18754f;border:1px solid #d7eee3}
 .card-wa:hover{background:#e3f4eb}
 @media(max-width:680px){.listing-image{height:245px}.listing-bottom{align-items:stretch;flex-direction:column}.listing-actions{width:100%}.card-action,.card-wa{flex:1;min-height:42px}.listing-price strong{font-size:24px}.listing-features{min-height:0}}
+
+/* Business-value section */
+.value-wrap{grid-template-columns:.78fr 1.22fr;align-items:start}
+.value-title p{margin:15px 0 0;color:#eadfe4;font-size:14px;max-width:430px}
+.journey-compare{display:grid;gap:10px;margin-bottom:16px}
+.journey-block{border-radius:16px;padding:15px 17px;border:1px solid rgba(255,255,255,.16)}
+.journey-block.old{background:rgba(255,255,255,.045)}
+.journey-block.new{background:#fff;color:var(--ink);border-color:#fff}
+.journey-label{display:block;font-size:10px;font-weight:800;margin-bottom:9px;opacity:.72}
+.journey-block.new .journey-label{color:var(--burg);opacity:1}
+.journey-steps{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.journey-steps span{font-size:11px;font-weight:700;padding:5px 8px;border-radius:8px;background:rgba(255,255,255,.09)}
+.journey-block.new .journey-steps span{background:#f7f0f4;color:#5a4e54}
+.journey-steps b{font-size:12px;opacity:.55}
+.benefit-grid article{min-height:126px}
+
+/* Services — clearer commercial outcomes */
+.services-section{background:linear-gradient(180deg,#fff,#fdfafb)}
+.services-head{align-items:center}
+.services-head>div{max-width:720px}
+.service-card{position:relative;overflow:hidden;transition:.22s;display:flex;flex-direction:column;min-height:330px}
+.service-card:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:#dfcad4}
+.service-card.featured::before{content:"";position:absolute;right:0;left:0;top:0;height:4px;background:var(--burg)}
+.service-top{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.service-top>span{font-size:9px;font-weight:800;color:#7e7077;background:#f7f2f4;border:1px solid #eee3e8;padding:5px 8px;border-radius:999px}
+.service-card.featured .service-top>span{background:#f1dfe8;color:var(--burg);border-color:#e4c6d4}
+.service-card p{min-height:0;margin-bottom:15px}
+.service-outcome{font-size:11px;color:#65585f;background:#faf6f8;border-right:3px solid #c8a0b4;padding:9px 10px;border-radius:9px;margin:auto 0 18px}
+.service-card a{display:inline-flex;align-items:center;gap:5px}
+@media(max-width:1020px){.value-wrap{grid-template-columns:1fr}.services-head{align-items:flex-start}.services-head .btn{margin-top:16px}.service-card{min-height:300px}}
+@media(max-width:680px){.journey-steps{display:grid;grid-template-columns:1fr auto 1fr;gap:7px}.journey-steps b:nth-of-type(2){display:none}.journey-steps span{font-size:10px;text-align:center}.services-head .btn{width:100%}.service-card{min-height:0}.service-outcome{margin-top:8px}}

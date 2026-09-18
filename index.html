@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=6" />
+  <link rel="stylesheet" href="styles.css?v=7" />
 </head>
 <body>
   <header class="site-header" id="top">
@@ -53,20 +53,23 @@
       </div>
 
       <div class="container search-shell">
-        <div class="search-heading"><strong>ابدأ البحث الآن</strong><span>اختر احتياجك واعرض النتائج مباشرة</span></div>
+        <div class="search-heading">
+  <div><strong>ابحث في العقارات المتاحة</strong><span>صفِّ النتائج حسب احتياجك خلال ثوانٍ</span></div>
+  <div class="search-status"><span class="live-dot"></span><b id="availableCount">0</b><small>عقار متاح حاليًا</small></div>
+</div>
         <form id="propertySearch" class="property-search">
           <label><span>المدينة</span><select id="city"><option value="all">الكل</option><option value="عنيزة">عنيزة</option><option value="الرياض">الرياض</option></select></label>
           <label><span>نوع العقار</span><select id="type"><option value="all">كل الأنواع</option><option>استراحة</option><option>شقة أرضية</option><option>شقة علوية</option><option>فيلا</option><option>مكتب تجاري</option><option>صالة تجارية</option></select></label>
           <label><span>نوع الطلب</span><select id="deal"><option value="all">الكل</option><option value="إيجار">إيجار</option><option value="بيع">بيع</option></select></label>
           <label><span>السعر حتى</span><select id="price"><option value="all">أي سعر</option><option value="5000">5,000 ر.س</option><option value="10000">10,000 ر.س</option><option value="20000">20,000 ر.س</option><option value="40000">40,000 ر.س</option></select></label>
-          <button class="btn btn-primary search-btn" type="submit">بحث</button>
+          <button class="btn btn-primary search-btn" type="submit"><span>بحث عن عقار</span><b>←</b></button>
         </form>
       </div>
     </section>
 
     <section class="section-pad listings-section" id="listings">
       <div class="container">
-        <div class="section-head"><div><span class="eyebrow">العروض الحالية</span><h2>عقارات متاحة الآن</h2><p>نماذج مبنية على فئات وإعلانات منشورة لدى الأوس، مع صور توضيحية في هذا النموذج.</p></div><button id="resetFilters" class="link-btn">عرض الكل ←</button></div>
+        <div class="section-head"><div><span class="eyebrow">العروض الحالية</span><h2>عقارات متاحة الآن</h2><p>نماذج مبنية على فئات وإعلانات منشورة لدى الأوس، مع صور توضيحية في هذا النموذج.</p><div class="results-summary" id="resultsSummary">عرض أحدث العقارات المتاحة</div></div><button id="resetFilters" class="link-btn">مسح الفلاتر ←</button></div>
         <div class="listing-grid" id="listingGrid"></div>
         <div class="center"><button class="btn btn-outline" id="showAllListings" type="button">عرض جميع العقارات</button></div>
       </div>
@@ -159,7 +162,7 @@
 
   <div class="modal" id="listingModal" aria-hidden="true"><div class="modal-backdrop" data-close></div><div class="modal-card"><button class="modal-close" data-close>×</button><div class="modal-image" id="modalImage"></div><div class="modal-body"><span class="eyebrow">تفاصيل العقار</span><h3 id="modalTitle"></h3><div class="modal-tags" id="modalTags"></div><div class="modal-price" id="modalPrice"></div><ul id="modalFeatures"></ul><a class="btn btn-primary btn-full" id="modalWhatsApp" target="_blank" rel="noreferrer">استفسر عبر واتساب</a></div></div></div>
 
-  <script src="script.js?v=5"></script>
+  <script src="script.js?v=7"></script>
 </body>
 </html>
 

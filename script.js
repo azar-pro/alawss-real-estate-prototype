@@ -16,13 +16,17 @@ let listings=loadListings();
 const grid=document.getElementById('listingGrid');
 function money(n){return new Intl.NumberFormat('ar-SA').format(Number(n)||0)}
 function visibleListings(){return listings.filter(x=>x.status==='متاح')}
-function render(items){
+function updateAvailableCount(){const el=document.getElementById('availableCount');if(el)el.textContent=visibleListings().length}
+function updateResultsSummary(count,filtered=false){const el=document.getElementById('resultsSummary');if(!el)return;el.textContent=filtered?`تم العثور على ${count} عقار مطابق`:`عرض ${count} عقار متاح`}
+function render(items,filtered=false){
+  updateResultsSummary(items.length,filtered);
   if(!items.length){grid.innerHTML='<div class="empty-state"><strong>لا توجد نتائج مطابقة</strong><span>جرّب تغيير المدينة أو نوع العقار أو السعر.</span></div>';return}
   grid.innerHTML=items.map(x=>`<article class="listing-card"><div class="listing-image" style="background-image:url('${x.img}')"><span class="listing-badge">${x.deal}</span><span class="listing-no">إعلان ${x.id}</span></div><div class="listing-body"><div class="listing-top"><div><h3>${x.type}</h3><span>${x.district} · ${x.city}</span></div></div><div class="listing-price"><strong>${money(x.price)} ر.س</strong><small>${x.period||''}</small></div><div class="listing-features">${(x.features||[]).slice(0,3).map(f=>`<span>${f}</span>`).join('')}</div><button class="card-action" data-open="${x.id}">عرض التفاصيل</button></div></article>`).join('');bindOpen()
 }
+updateAvailableCount();
 render(visibleListings().filter(x=>x.featured!==false).slice(0,6));
-document.getElementById('propertySearch').addEventListener('submit',e=>{e.preventDefault();const city=document.getElementById('city').value,type=document.getElementById('type').value,deal=document.getElementById('deal').value,price=document.getElementById('price').value;const out=visibleListings().filter(x=>(city==='all'||x.city===city)&&(type==='all'||x.type===type)&&(deal==='all'||x.deal===deal)&&(price==='all'||Number(x.price)<=Number(price)));render(out);document.getElementById('listings').scrollIntoView({behavior:'smooth'})});
-document.getElementById('resetFilters').addEventListener('click',()=>{document.getElementById('propertySearch').reset();render(visibleListings())});
+document.getElementById('propertySearch').addEventListener('submit',e=>{e.preventDefault();const city=document.getElementById('city').value,type=document.getElementById('type').value,deal=document.getElementById('deal').value,price=document.getElementById('price').value;const out=visibleListings().filter(x=>(city==='all'||x.city===city)&&(type==='all'||x.type===type)&&(deal==='all'||x.deal===deal)&&(price==='all'||Number(x.price)<=Number(price)));render(out,true);document.getElementById('listings').scrollIntoView({behavior:'smooth'})});
+document.getElementById('resetFilters').addEventListener('click',()=>{document.getElementById('propertySearch').reset();render(visibleListings());});
 document.getElementById('showAllListings')?.addEventListener('click',()=>{
   document.getElementById('propertySearch').reset();
   render(visibleListings());
@@ -34,4 +38,4 @@ function bindOpen(){document.querySelectorAll('[data-open]').forEach(b=>b.onclic
 document.querySelectorAll('[data-close]').forEach(el=>el.addEventListener('click',()=>{modal.classList.remove('open');modal.setAttribute('aria-hidden','true');document.body.style.overflow=''}));
 document.getElementById('ownerForm').addEventListener('submit',e=>{e.preventDefault();const fd=new FormData(e.currentTarget);const msg=`مرحبًا، لدي عقار وأرغب في التواصل مع الأوس العقارية.\nنوع العقار: ${fd.get('propertyType')}\nالمدينة: ${fd.get('ownerCity')}\nالخدمة المطلوبة: ${fd.get('service')}\nرقم التواصل: ${fd.get('phone')}`;window.open(`https://wa.me/966920010307?text=${encodeURIComponent(msg)}`,'_blank')});
 const mt=document.querySelector('.menu-toggle'),nav=document.querySelector('.main-nav');mt.addEventListener('click',()=>{const open=nav.classList.toggle('open');mt.setAttribute('aria-expanded',open)});nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>nav.classList.remove('open')));
-window.addEventListener('storage',e=>{if(e.key===STORAGE_KEY){listings=loadListings();render(visibleListings().filter(x=>x.featured!==false).slice(0,6));}});
+window.addEventListener('storage',e=>{if(e.key===STORAGE_KEY){listings=loadListings();updateAvailableCount();render(visibleListings().filter(x=>x.featured!==false).slice(0,6));}});

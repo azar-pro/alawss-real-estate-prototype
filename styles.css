@@ -120,3 +120,5 @@
 .review-card blockquote{margin:0;font-size:18px;line-height:1.7;font-weight:700;color:#3f353a}
 .review-note{margin-top:17px;font-size:10px;color:#8b7f85;text-align:center}
 @media(max-width:680px){.reviews-head{display:block}.reviews-source{display:inline-flex;margin-top:12px}.review-card{min-height:0}.review-card blockquote{font-size:17px}}
+
+.review-note{max-width:760px;margin-inline:auto;margin-top:18px;line-height:1.7;color:#8a7e84}.reviews-section .section-head p{max-width:700px}

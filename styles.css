@@ -6,3 +6,12 @@
 .empty-state{grid-column:1/-1;border:1px dashed var(--line);border-radius:18px;padding:42px;text-align:center;color:var(--muted);display:grid;gap:5px}.empty-state strong{color:var(--ink);font-size:18px}.admin-link{opacity:.55;font-size:11px!important}.admin-link:hover{opacity:1}
 
 @media(max-width:680px){.hero-listing-card{right:10px;top:14px;width:205px;padding:14px}.hero-listing-card>strong{font-size:15px}.hero-listing-price b{font-size:16px}.floating-card{max-width:210px}.floating-tag{left:0;top:auto;bottom:92px}}
+
+.search-heading>div:first-child{display:grid;gap:2px}
+.search-status{display:flex;align-items:center;gap:7px;background:#faf5f7;border:1px solid #ecdde4;border-radius:999px;padding:7px 11px;color:var(--burg)}
+.search-status .live-dot{width:8px;height:8px;border-radius:50%;background:#2bba78;box-shadow:0 0 0 4px rgba(43,186,120,.11)}
+.search-status b{font-size:14px}.search-status small{font-size:11px;color:#6e5f66}
+.property-search label{transition:.18s}.property-search label:focus-within{border-color:#c89aaf;box-shadow:0 0 0 3px rgba(92,6,51,.055);background:#fff}
+.search-btn{gap:14px}.search-btn b{font-size:18px;line-height:1}
+.results-summary{display:inline-flex;margin-top:12px;padding:6px 10px;border-radius:9px;background:#f7f1f4;color:#786a71;font-size:11px;font-weight:700}
+@media(max-width:680px){.search-status{margin-top:12px;width:max-content}.search-btn{justify-content:space-between;padding-inline:18px}.results-summary{margin-top:10px}}

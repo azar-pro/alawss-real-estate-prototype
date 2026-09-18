@@ -53,7 +53,30 @@ document.getElementById('showAllListings')?.addEventListener('click',()=>{
   document.getElementById('listings').scrollIntoView({behavior:'smooth'});
 });
 const modal=document.getElementById('listingModal');
-function openListing(id){const x=listings.find(v=>String(v.id)===String(id))||listings[0];if(!x)return;document.getElementById('modalImage').style.backgroundImage=`url('${x.img}')`;document.getElementById('modalTitle').textContent=`${x.type} — ${x.city}`;document.getElementById('modalTags').innerHTML=`<span>${x.deal}</span><span>${x.district}</span><span>إعلان ${x.id}</span>`;document.getElementById('modalPrice').textContent=`${money(x.price)} ر.س${x.period?' — '+x.period:''}`;document.getElementById('modalFeatures').innerHTML=(x.features||[]).map(f=>`<li>${f}</li>`).join('');const msg=`مرحبًا، أرغب في الاستفسار عن الإعلان رقم ${x.id} — ${x.type} في ${x.city} — السعر ${money(x.price)} ر.س.`;document.getElementById('modalWhatsApp').href=`https://wa.me/966920010307?text=${encodeURIComponent(msg)}`;modal.classList.add('open');modal.setAttribute('aria-hidden','false');document.body.style.overflow='hidden'}
+function openListing(id){
+  const x=listings.find(v=>String(v.id)===String(id))||listings[0];if(!x)return;
+  const images=(Array.isArray(x.images)&&x.images.length?x.images:[x.img]).filter(Boolean);
+  const main=images[0]||x.img;
+  const modalImage=document.getElementById('modalImage');
+  modalImage.style.backgroundImage=`url('${main}')`;
+  const modalThumbs=document.getElementById('modalThumbs');
+  modalThumbs.innerHTML=images.slice(0,6).map((src,i)=>`<button type="button" class="modal-thumb ${i===0?'active':''}" data-modal-image="${i}" style="background-image:url('${src}')"></button>`).join('');
+  modalThumbs.hidden=images.length<=1;
+  modalThumbs.querySelectorAll('[data-modal-image]').forEach(btn=>btn.onclick=()=>{
+    const i=Number(btn.dataset.modalImage);
+    modalImage.style.backgroundImage=`url('${images[i]}')`;
+    modalThumbs.querySelectorAll('.modal-thumb').forEach(t=>t.classList.remove('active'));
+    btn.classList.add('active');
+  });
+  document.getElementById('modalTitle').textContent=`${x.type} — ${x.city}`;
+  const extra=[x.deal,x.district,`إعلان ${x.id}`,x.area?`${x.area} م²`:null,x.rooms?`${x.rooms} غرف`:null].filter(Boolean);
+  document.getElementById('modalTags').innerHTML=extra.map(v=>`<span>${v}</span>`).join('');
+  document.getElementById('modalPrice').textContent=`${money(x.price)} ر.س${x.period?' — '+x.period:''}`;
+  document.getElementById('modalFeatures').innerHTML=(x.features||[]).map(f=>`<li>${f}</li>`).join('');
+  const msg=`مرحبًا، أرغب في الاستفسار عن الإعلان رقم ${x.id} — ${x.type} في ${x.city} — السعر ${money(x.price)} ر.س.`;
+  document.getElementById('modalWhatsApp').href=`https://wa.me/966920010307?text=${encodeURIComponent(msg)}`;
+  modal.classList.add('open');modal.setAttribute('aria-hidden','false');document.body.style.overflow='hidden'
+}
 function bindOpen(){document.querySelectorAll('[data-open]').forEach(b=>b.onclick=()=>openListing(b.dataset.open))}bindOpen();
 document.querySelectorAll('[data-close]').forEach(el=>el.addEventListener('click',()=>{modal.classList.remove('open');modal.setAttribute('aria-hidden','true');document.body.style.overflow=''}));
 document.getElementById('ownerForm').addEventListener('submit',e=>{e.preventDefault();const fd=new FormData(e.currentTarget);const msg=`مرحبًا، لدي عقار وأرغب في التواصل مع الأوس العقارية.\nنوع العقار: ${fd.get('propertyType')}\nالمدينة: ${fd.get('ownerCity')}\nالخدمة المطلوبة: ${fd.get('service')}\nرقم التواصل: ${fd.get('phone')}`;window.open(`https://wa.me/966920010307?text=${encodeURIComponent(msg)}`,'_blank')});

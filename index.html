@@ -55,7 +55,7 @@
       <div class="container search-shell">
         <div class="search-heading">
   <div><strong>ابحث في العقارات المتاحة</strong><span>صفِّ النتائج حسب احتياجك خلال ثوانٍ</span></div>
-  <div class="search-status"><span class="live-dot"></span><b id="availableCount">0</b><small>عقار متاح حاليًا</small></div>
+  <div class="search-status" aria-live="polite"><span class="live-dot"></span><b id="availableCount"></b><small id="availableCountLabel">جارٍ تحميل العقارات...</small></div>
 </div>
         <form id="propertySearch" class="property-search">
           <label><span>المدينة</span><select id="city"><option value="all">الكل</option><option value="عنيزة">عنيزة</option><option value="الرياض">الرياض</option></select></label>
@@ -319,7 +319,7 @@
 
   <div class="modal" id="listingModal" aria-hidden="true"><div class="modal-backdrop" data-close></div><div class="modal-card"><button class="modal-close" data-close>×</button><div class="modal-media"><div class="modal-image" id="modalImage"></div><div class="modal-thumbs" id="modalThumbs"></div></div><div class="modal-body"><span class="eyebrow">تفاصيل العقار</span><h3 id="modalTitle"></h3><div class="modal-tags" id="modalTags"></div><div class="modal-price" id="modalPrice"></div><ul id="modalFeatures"></ul><a class="btn btn-primary btn-full" id="modalWhatsApp" target="_blank" rel="noreferrer">استفسر عبر واتساب</a></div></div></div>
 
-  <script src="script.js?v=17"></script>
+  <script src="script.js?v=18"></script>
 </body>
 </html>
 

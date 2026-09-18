@@ -58,7 +58,7 @@ function statusBadge(s){return `<span class="status ${statusClass(s)}">${s}</spa
 function updateStatusPreview(){
   const s=statusSelect.value;
   statusPreview.className=`status-preview status ${statusClass(s)}`;
-  statusPreview.innerHTML=`<i></i>${s}`
+  statusPreview.textContent=s
 }
 function renderStats(){
   const total=listings.length;

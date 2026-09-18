@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=10" />
+  <link rel="stylesheet" href="styles.css?v=11" />
 </head>
 <body>
   <header class="site-header" id="top">
@@ -173,17 +173,50 @@
       </div>
     </section>
 
-    <section class="section-pad" id="about">
+    <section class="section-pad trust-section" id="about">
       <div class="container trust-grid">
-        <div class="trust-panel"><span class="eyebrow light">ثقة وتنظيم</span><h2>لماذا الأوس العقارية؟</h2><p>الحضور الرقمي المقترح يعكس ما يظهر في قنوات الشركة: خدمات عقارية مباشرة، فروع واضحة، واعتمادات وتقييمات منشورة.</p><a class="btn btn-light" href="#branches">شاهد الفروع</a></div>
-        <div class="trust-items"><article><strong>إدارة وتأجير العقار</strong><p>خدمة أساسية واضحة في حضور الشركة.</p></article><article><strong>الرياض وعنيزة</strong><p>تجربة تواصل موجهة حسب الفرع.</p></article><article><strong>آراء عملاء منشورة</strong><p>إشارات ثقة قابلة للعرض دون اختلاق أرقام.</p></article><article><strong>ترخيص واعتماد عقاري</strong><p>إبراز الاعتمادات المنشورة بصريًا داخل الموقع.</p></article></div>
+        <div class="trust-panel">
+          <span class="eyebrow light">ثقة مبنية على حضور قائم</span>
+          <h2>لماذا الأوس العقارية؟</h2>
+          <p>الفكرة لا تبدأ من هوية جديدة؛ بل تنظّم ما تملكه الشركة بالفعل من خدمات، فروع، تقييمات واعتماد عقاري داخل تجربة واحدة أسهل للعميل.</p>
+          <div class="trust-panel-actions">
+            <a class="btn btn-light" href="#branches">شاهد الفروع</a>
+            <a class="trust-text-link" href="#customerReviews">آراء العملاء ←</a>
+          </div>
+        </div>
+        <div class="trust-items">
+          <article><span>01</span><div><strong>إدارة وتأجير العقار</strong><p>خدمة أساسية ظاهرة بوضوح في حساب الشركة ومحتواها.</p></div></article>
+          <article><span>02</span><div><strong>الرياض وعنيزة</strong><p>وجود معلن في المدينتين مع إمكانية توجيه التواصل حسب الفرع.</p></div></article>
+          <article><span>03</span><div><strong>آراء عملاء فعلية</strong><p>تقييمات سبق أن شاركتها الشركة ويمكن تحويلها إلى عنصر ثقة واضح داخل الموقع.</p></div></article>
+          <article><span>04</span><div><strong>ترخيص عقاري</strong><p>يمكن إبراز بيانات الترخيص المنشورة لدى الشركة بصورة أوضح من بقائها داخل القصص.</p></div></article>
+        </div>
       </div>
     </section>
 
-    <section class="section-pad reviews-section">
+    <section class="section-pad reviews-section" id="customerReviews">
       <div class="container">
-        <div class="section-head"><div><span class="eyebrow">آراء العملاء</span><h2>تجارب منشورة تعزز الثقة</h2><p>في النسخة النهائية يمكن إدراج نصوص التقييمات الفعلية من المصادر العامة. هنا نعرض بنية آمنة دون اقتباسات مختلقة.</p></div></div>
-        <div class="review-grid"><article><div class="stars">★★★★★</div><strong>تقييمات Google موثقة</strong><p>بطاقة مخصصة لعرض تقييم فعلي بعد ربط المصدر.</p></article><article><div class="stars">★★★★★</div><strong>تقييمات حديثة</strong><p>يمكن فرزها حسب الأحدث أو حسب الفرع.</p></article><article><div class="stars">★★★★★</div><strong>عرض بدون مبالغة</strong><p>نستخدم النصوص والتقييمات المنشورة فقط.</p></article></div>
+        <div class="section-head reviews-head">
+          <div><span class="eyebrow">آراء العملاء</span><h2>تجارب حقيقية شاركتها الأوس</h2><p>نماذج من التقييمات الظاهرة في صور آراء العملاء التي نشرتها الشركة، بدل استخدام شهادات تجريبية أو نصوص مختلقة.</p></div>
+          <span class="reviews-source">تقييمات منشورة لدى الشركة</span>
+        </div>
+        <div class="review-grid real-reviews">
+          <article class="review-card">
+            <div class="review-top"><div class="review-avatar">A</div><div><strong>abdullah almansour</strong><small>تقييم عميل منشور</small></div><span class="review-rating">5.0</span></div>
+            <div class="stars" aria-label="5 نجوم">★★★★★</div>
+            <blockquote>“أخلاق الموظفين ممتازة وفقهم الله”</blockquote>
+          </article>
+          <article class="review-card featured-review">
+            <div class="review-top"><div class="review-avatar">O</div><div><strong>Osama Helmy</strong><small>تقييم عميل منشور</small></div><span class="review-rating">5.0</span></div>
+            <div class="stars" aria-label="5 نجوم">★★★★★</div>
+            <blockquote>“ممتازين جدا”</blockquote>
+          </article>
+          <article class="review-card">
+            <div class="review-top"><div class="review-avatar">M</div><div><strong>Mostafa</strong><small>تقييم عميل منشور</small></div><span class="review-rating">5.0</span></div>
+            <div class="stars" aria-label="5 نجوم">★★★★★</div>
+            <blockquote>“خدمة ممتازة”</blockquote>
+          </article>
+        </div>
+        <div class="review-note">تم استخدام نصوص قصيرة واضحة فقط من التقييمات الظاهرة في الصور المرسلة، للحفاظ على دقة النموذج وعدم اختلاق أي شهادة.</div>
       </div>
     </section>
 

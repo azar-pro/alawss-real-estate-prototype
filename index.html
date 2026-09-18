@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=9" />
+  <link rel="stylesheet" href="styles.css?v=10" />
 </head>
 <body>
   <header class="site-header" id="top">
@@ -145,15 +145,31 @@
 
     <section class="section-pad owner-section" id="owners">
       <div class="container owner-grid">
-        <div class="owner-copy"><span class="eyebrow">للملاك</span><h2>هل لديك عقار؟</h2><p>دع الأوس تتولى التسويق، التأجير، المتابعة والتحصيل. أرسل احتياجك في خطوات قصيرة وسنتابع معك مباشرة.</p><div class="owner-points"><span>✓ طلب مختصر وواضح</span><span>✓ اختيار الخدمة المطلوبة</span><span>✓ تواصل مباشر مع الفريق</span></div></div>
-        <form id="ownerForm" class="owner-form">
-          <div class="form-step"><span>1</span><label>نوع العقار<select name="propertyType" required><option value="">اختر النوع</option><option>شقة</option><option>فيلا</option><option>استراحة</option><option>مكتب / محل</option><option>أخرى</option></select></label></div>
-          <div class="form-step"><span>2</span><label>المدينة<select name="ownerCity" required><option value="">اختر المدينة</option><option>عنيزة</option><option>الرياض</option><option>مدينة أخرى</option></select></label></div>
-          <div class="form-step"><span>3</span><label>الخدمة المطلوبة<select name="service" required><option value="">اختر الخدمة</option><option>إدارة أملاك</option><option>تأجير</option><option>تسويق عقاري</option><option>تحصيل إيجارات</option></select></label></div>
-          <div class="form-step"><span>4</span><label>رقم التواصل<input name="phone" inputmode="tel" placeholder="05xxxxxxxx" required></label></div>
-          <button class="btn btn-primary btn-full" type="submit">اعرض عقارك معنا</button>
-          <small>سيتم فتح واتساب برسالة جاهزة تحتوي على تفاصيل طلبك.</small>
-        </form>
+        <div class="owner-copy">
+          <span class="eyebrow">للملاك</span>
+          <h2>حوّل طلب إدارة عقارك إلى بداية واضحة</h2>
+          <p>بدل الرسائل المتفرقة، يجمع الموقع المعلومات الأساسية أولًا ثم يرسلها للفريق في رسالة واتساب منظمة وجاهزة للمتابعة.</p>
+          <div class="owner-flow">
+            <article><span>01</span><div><strong>أرسل تفاصيل العقار</strong><small>نوع العقار والمدينة والخدمة المطلوبة.</small></div></article>
+            <article><span>02</span><div><strong>تصل البيانات للفريق</strong><small>في رسالة موحدة تسهّل فهم الطلب بسرعة.</small></div></article>
+            <article><span>03</span><div><strong>تبدأ المتابعة</strong><small>يستكمل الفريق التفاصيل والتقييم مباشرة مع المالك.</small></div></article>
+          </div>
+          <div class="owner-proof"><span>✓ تسويق</span><span>✓ تأجير</span><span>✓ إدارة أملاك</span><span>✓ تحصيل</span></div>
+        </div>
+        <div class="owner-form-wrap">
+          <div class="owner-form-head">
+            <div><span>طلب مالك عقار</span><strong>أرسل احتياجك خلال أقل من دقيقة</strong></div>
+            <small>4 خطوات فقط</small>
+          </div>
+          <form id="ownerForm" class="owner-form">
+            <div class="form-step"><span>1</span><label>نوع العقار<select name="propertyType" required><option value="">اختر النوع</option><option>شقة</option><option>فيلا</option><option>استراحة</option><option>مكتب / محل</option><option>أخرى</option></select></label></div>
+            <div class="form-step"><span>2</span><label>المدينة<select name="ownerCity" required><option value="">اختر المدينة</option><option>عنيزة</option><option>الرياض</option><option>مدينة أخرى</option></select></label></div>
+            <div class="form-step"><span>3</span><label>الخدمة المطلوبة<select name="service" required><option value="">اختر الخدمة</option><option>إدارة أملاك</option><option>تأجير</option><option>تسويق عقاري</option><option>تحصيل إيجارات</option></select></label></div>
+            <div class="form-step"><span>4</span><label>رقم التواصل<input name="phone" inputmode="tel" placeholder="05xxxxxxxx" required></label></div>
+            <button class="btn btn-primary btn-full" type="submit"><span>إرسال الطلب عبر واتساب</span><b>←</b></button>
+            <small class="form-note">لا يتم إرسال الطلب قبل مراجعتك؛ سيتم فتح واتساب برسالة جاهزة فقط.</small>
+          </form>
+        </div>
       </div>
     </section>
 

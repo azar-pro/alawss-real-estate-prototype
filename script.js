@@ -15,7 +15,7 @@ function loadListings(){
 let listings=loadListings();
 const grid=document.getElementById('listingGrid');
 function money(n){return new Intl.NumberFormat('ar-SA').format(Number(n)||0)}
-function visibleListings(){return listings.filter(x=>x.status!=='غير متاح')}
+function visibleListings(){return listings.filter(x=>x.status==='متاح')}
 function render(items){
   if(!items.length){grid.innerHTML='<div class="empty-state"><strong>لا توجد نتائج مطابقة</strong><span>جرّب تغيير المدينة أو نوع العقار أو السعر.</span></div>';return}
   grid.innerHTML=items.map(x=>`<article class="listing-card"><div class="listing-image" style="background-image:url('${x.img}')"><span class="listing-badge">${x.deal}</span><span class="listing-no">إعلان ${x.id}</span></div><div class="listing-body"><div class="listing-top"><div><h3>${x.type}</h3><span>${x.district} · ${x.city}</span></div></div><div class="listing-price"><strong>${money(x.price)} ر.س</strong><small>${x.period||''}</small></div><div class="listing-features">${(x.features||[]).slice(0,3).map(f=>`<span>${f}</span>`).join('')}</div><button class="card-action" data-open="${x.id}">عرض التفاصيل</button></div></article>`).join('');bindOpen()
@@ -23,6 +23,11 @@ function render(items){
 render(visibleListings().filter(x=>x.featured!==false).slice(0,6));
 document.getElementById('propertySearch').addEventListener('submit',e=>{e.preventDefault();const city=document.getElementById('city').value,type=document.getElementById('type').value,deal=document.getElementById('deal').value,price=document.getElementById('price').value;const out=visibleListings().filter(x=>(city==='all'||x.city===city)&&(type==='all'||x.type===type)&&(deal==='all'||x.deal===deal)&&(price==='all'||Number(x.price)<=Number(price)));render(out);document.getElementById('listings').scrollIntoView({behavior:'smooth'})});
 document.getElementById('resetFilters').addEventListener('click',()=>{document.getElementById('propertySearch').reset();render(visibleListings())});
+document.getElementById('showAllListings')?.addEventListener('click',()=>{
+  document.getElementById('propertySearch').reset();
+  render(visibleListings());
+  document.getElementById('listings').scrollIntoView({behavior:'smooth'});
+});
 const modal=document.getElementById('listingModal');
 function openListing(id){const x=listings.find(v=>String(v.id)===String(id))||listings[0];if(!x)return;document.getElementById('modalImage').style.backgroundImage=`url('${x.img}')`;document.getElementById('modalTitle').textContent=`${x.type} — ${x.city}`;document.getElementById('modalTags').innerHTML=`<span>${x.deal}</span><span>${x.district}</span><span>إعلان ${x.id}</span>`;document.getElementById('modalPrice').textContent=`${money(x.price)} ر.س${x.period?' — '+x.period:''}`;document.getElementById('modalFeatures').innerHTML=(x.features||[]).map(f=>`<li>${f}</li>`).join('');const msg=`مرحبًا، أرغب في الاستفسار عن الإعلان رقم ${x.id} — ${x.type} في ${x.city} — السعر ${money(x.price)} ر.س.`;document.getElementById('modalWhatsApp').href=`https://wa.me/966920010307?text=${encodeURIComponent(msg)}`;modal.classList.add('open');modal.setAttribute('aria-hidden','false');document.body.style.overflow='hidden'}
 function bindOpen(){document.querySelectorAll('[data-open]').forEach(b=>b.onclick=()=>openListing(b.dataset.open))}bindOpen();

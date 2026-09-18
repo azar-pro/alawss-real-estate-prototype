@@ -147,3 +147,21 @@
 .cta-inner{align-items:center}.cta-actions{display:flex;align-items:center;gap:14px;flex-wrap:wrap}.cta-phone{display:grid;line-height:1.2;color:#fff}.cta-phone small{font-size:9px;color:#e9cbd9}.cta-phone strong{font-size:17px}
 .footer-grid a{transition:.18s}.footer-grid a:hover{color:#fff}.footer-bottom span:last-child{color:#8f858a}
 @media(max-width:680px){.branch-card p{min-height:0}.detail-kicker{display:block}.detail-kicker>strong{display:block;margin-top:5px}.preview-info{padding:22px}.preview-info h2{font-size:29px}.preview-features,.preview-actions{grid-template-columns:1fr}.cta-actions{display:grid;width:100%;margin-top:22px}.cta-phone{text-align:center}.branch-actions{grid-template-columns:1fr 1fr!important}}
+
+/* Final desktop footer/CTA QA */
+.whatsapp-cta{position:relative;overflow:hidden}
+.whatsapp-cta::after{content:"";position:absolute;left:-90px;bottom:-130px;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.08),transparent 68%);pointer-events:none}
+.cta-inner{position:relative;z-index:1}
+.cta-inner>div:first-child{max-width:720px}
+.cta-inner h2{margin-bottom:10px}
+.cta-actions{min-width:max-content}
+.footer{padding-top:54px}
+.footer-grid{align-items:start}
+.footer-grid>div:first-child p{max-width:330px}
+.footer-grid>div>strong{margin-bottom:5px}
+.footer-grid a{line-height:1.9}
+.footer-bottom{padding-bottom:12px;gap:24px}
+.admin-link{margin-top:4px;opacity:.65;border-top:1px solid #3a3035;padding-top:7px;width:max-content}
+.floating-wa{bottom:24px;left:24px}
+@media(min-width:681px){.footer-bottom{padding-left:82px}}
+@media(max-width:680px){.cta-actions{min-width:0}.footer{padding-top:48px}.footer-bottom{padding-bottom:68px}.floating-wa{width:50px;height:50px;bottom:18px;left:18px}}

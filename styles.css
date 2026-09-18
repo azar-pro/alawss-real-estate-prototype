@@ -222,3 +222,12 @@
 .property-detail-actions .btn{width:100%;padding-inline:14px}
 @media(max-width:1020px){.property-detail-mock{grid-template-columns:1fr}.property-media{min-height:460px}.property-detail-panel{padding:26px}}
 @media(max-width:680px){.property-detail-preview{padding:58px 0}.property-preview-head{display:block;margin-bottom:18px}.property-preview-head h2{font-size:30px}.auto-ref-note{display:inline-flex;margin-top:10px;white-space:normal}.property-detail-mock{border-radius:18px}.property-media{display:block;min-height:0;padding:8px}.property-main-image{height:300px}.property-thumbs{grid-template-columns:1fr 1fr;grid-template-rows:none;margin-top:8px}.property-thumb{height:105px}.property-detail-panel{padding:20px}.property-title-block h3{font-size:26px}.property-features{grid-template-columns:1fr}.property-detail-actions{grid-template-columns:1fr}.property-detail-actions .btn{min-height:48px}}
+
+/* Client-pitch polish: listing modal gallery only */
+.modal-media{min-width:0;background:#f4efef;display:flex;flex-direction:column}
+.modal-media .modal-image{flex:1;min-height:430px}
+.modal-thumbs{display:flex;gap:8px;padding:10px;background:#fff;border-top:1px solid var(--line);overflow-x:auto}
+.modal-thumbs[hidden]{display:none}
+.modal-thumb{flex:0 0 68px;height:54px;border:2px solid transparent;border-radius:9px;background-size:cover;background-position:center;cursor:pointer;opacity:.75}
+.modal-thumb:hover,.modal-thumb.active{opacity:1;border-color:var(--burg)}
+@media(max-width:680px){.modal-media .modal-image{min-height:260px}.modal-thumbs{padding:8px}.modal-thumb{flex-basis:62px;height:48px}}

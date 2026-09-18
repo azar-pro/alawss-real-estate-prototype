@@ -1,4 +1,5 @@
 const STORAGE_KEY='alawss_listings_v1';
+const COUNTER_KEY='alawss_last_listing_id_v1';
 const DEFAULT_LISTINGS=[
  {id:'1053',type:'استراحة',city:'عنيزة',district:'حي الفرعية',deal:'إيجار',price:5450,period:'كل 6 أشهر',features:['عداد كهرباء مستقل','كراج'],status:'متاح',featured:true,img:'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1000&q=85'},
  {id:'1061',type:'شقة علوية',city:'عنيزة',district:'حي شيخة',deal:'إيجار',price:10450,period:'كل 6 أشهر',features:['مدخل مستقل','مطبخ ومكيفات راكبة'],status:'متاح',featured:true,img:'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1000&q=85'},
@@ -9,13 +10,33 @@ const DEFAULT_LISTINGS=[
 ];
 function read(){try{const v=JSON.parse(localStorage.getItem(STORAGE_KEY));if(Array.isArray(v))return v}catch(e){} localStorage.setItem(STORAGE_KEY,JSON.stringify(DEFAULT_LISTINGS));return [...DEFAULT_LISTINGS]}
 function save(){localStorage.setItem(STORAGE_KEY,JSON.stringify(listings))}
+function getStoredCounter(){
+  const raw=Number.parseInt(localStorage.getItem(COUNTER_KEY)||'',10);
+  return Number.isFinite(raw)?raw:null;
+}
+function getHighestListingId(){
+  const nums=listings.map(x=>Number.parseInt(String(x.id).replace(/\D/g,''),10)).filter(Number.isFinite);
+  return nums.length?Math.max(...nums):0;
+}
+function ensureCounter(){
+  const highest=getHighestListingId();
+  const stored=getStoredCounter();
+  const value=Math.max(highest,stored??0);
+  localStorage.setItem(COUNTER_KEY,String(value));
+  return value;
+}
+function reserveNextListingId(){
+  const next=ensureCounter()+1;
+  localStorage.setItem(COUNTER_KEY,String(next));
+  return String(next);
+}
 let listings=read();
+ensureCounter();
 let uploadedData='';
 const rows=document.getElementById('propertyRows'),stats=document.getElementById('stats'),drawer=document.getElementById('propertyDrawer'),form=document.getElementById('propertyForm'),preview=document.getElementById('imagePreview'),search=document.getElementById('adminSearch'),statusFilter=document.getElementById('statusFilter');
 const money=n=>new Intl.NumberFormat('ar-SA').format(Number(n)||0);
 function getNextListingId(){
-  const nums=listings.map(x=>Number.parseInt(String(x.id).replace(/\D/g,''),10)).filter(Number.isFinite);
-  return String((nums.length?Math.max(...nums):0)+1);
+  return String(ensureCounter()+1);
 }
 function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(window.__toast);window.__toast=setTimeout(()=>t.classList.remove('show'),2200)}
 function renderStats(){const total=listings.length,available=listings.filter(x=>x.status==='متاح').length,rented=listings.filter(x=>x.status==='مؤجر').length,featured=listings.filter(x=>x.featured).length;stats.innerHTML=`<article class="stat accent"><small>إجمالي العقارات</small><strong>${total}</strong></article><article class="stat"><small>متاح</small><strong>${available}</strong></article><article class="stat"><small>مؤجر</small><strong>${rented}</strong></article><article class="stat"><small>مميز في الرئيسية</small><strong>${featured}</strong></article>`}
@@ -28,6 +49,6 @@ function closeDrawer(){drawer.classList.remove('open');drawer.setAttribute('aria
 function setPreview(src){preview.style.backgroundImage=src?`url("${src}")`:'';preview.querySelector('span')?.remove();if(!src)preview.innerHTML='<span>معاينة الصورة</span>';else preview.innerHTML=''}
 document.getElementById('addPropertyBtn').onclick=()=>openDrawer();document.querySelectorAll('[data-close-drawer]').forEach(b=>b.onclick=closeDrawer);search.oninput=renderRows;statusFilter.onchange=renderRows;
 document.getElementById('imageUpload').addEventListener('change',e=>{const file=e.target.files?.[0];if(!file)return;if(file.size>900000){toast('يفضل صورة أقل من 900KB في النسخة التجريبية');return}const r=new FileReader();r.onload=()=>{uploadedData=r.result;setPreview(uploadedData)};r.readAsDataURL(file)});form.elements.img.addEventListener('input',e=>{if(!uploadedData)setPreview(e.target.value.trim())});
-form.addEventListener('submit',e=>{e.preventDefault();const fd=new FormData(form),editing=fd.get('editingId'),id=editing?String(editing):getNextListingId();const old=listings.find(x=>String(x.id)===String(editing));const item={id,type:fd.get('type'),city:fd.get('city'),district:fd.get('district').trim(),deal:fd.get('deal'),price:Number(fd.get('price')),period:fd.get('period').trim(),features:fd.get('features').split('\n').map(s=>s.trim()).filter(Boolean),status:fd.get('status'),featured:fd.get('featured')==='on',img:uploadedData||fd.get('img').trim()||old?.img||'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=1000&q=80'};if(editing){listings=listings.map(x=>String(x.id)===String(editing)?item:x);toast('تم تحديث العقار')}else{listings.unshift(item);toast('تمت إضافة العقار')}save();render();closeDrawer()});
+form.addEventListener('submit',e=>{e.preventDefault();const fd=new FormData(form),editing=fd.get('editingId'),id=editing?String(editing):getNextListingId();const old=listings.find(x=>String(x.id)===String(editing));const finalId=editing?String(editing):reserveNextListingId();const item={id:finalId,type:fd.get('type'),city:fd.get('city'),district:fd.get('district').trim(),deal:fd.get('deal'),price:Number(fd.get('price')),period:fd.get('period').trim(),features:fd.get('features').split('\n').map(s=>s.trim()).filter(Boolean),status:fd.get('status'),featured:fd.get('featured')==='on',img:uploadedData||fd.get('img').trim()||old?.img||'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=1000&q=80'};if(editing){listings=listings.map(x=>String(x.id)===String(editing)?item:x);toast('تم تحديث العقار')}else{listings.unshift(item);toast('تمت إضافة العقار')}save();render();closeDrawer()});
 function bindActions(){document.querySelectorAll('[data-edit]').forEach(b=>b.onclick=()=>openDrawer(listings.find(x=>String(x.id)===b.dataset.edit)));document.querySelectorAll('[data-toggle]').forEach(b=>b.onclick=()=>{const x=listings.find(v=>String(v.id)===b.dataset.toggle);if(!x)return;x.status=x.status==='غير متاح'?'متاح':'غير متاح';save();render();toast(x.status==='متاح'?'تم تفعيل العقار':'تم إيقاف العقار')});document.querySelectorAll('[data-delete]').forEach(b=>b.onclick=()=>{const x=listings.find(v=>String(v.id)===b.dataset.delete);if(!x)return;if(confirm(`حذف الإعلان رقم ${x.id}؟`)){listings=listings.filter(v=>String(v.id)!==String(x.id));save();render();toast('تم حذف العقار')}})}
 render();

@@ -165,3 +165,8 @@
 .floating-wa{bottom:24px;left:24px}
 @media(min-width:681px){.footer-bottom{padding-left:82px}}
 @media(max-width:680px){.cta-actions{min-width:0}.footer{padding-top:48px}.footer-bottom{padding-bottom:68px}.floating-wa{width:50px;height:50px;bottom:18px;left:18px}}
+
+/* Keep phone numbers aligned inside RTL footer columns */
+.footer-phone{direction:ltr;unicode-bidi:isolate;display:block;width:max-content;justify-self:start;text-align:left}
+.footer-grid>div{min-width:0}
+@media(max-width:680px){.footer-phone{justify-self:start}}
